@@ -27,22 +27,26 @@ const Signin = () => {
 
         try {
             dispatch(signInStart());
-            
-            // Axios POST request
-            const { data } = await axios.post('/api/auth/signin', formData);
 
-            if (!data.success) {
-                dispatch(signInFailure(data.message));
-            } else {
-                dispatch(signInSuccess(data));
-                navigate('/');
+           
+           const res =await axios.post('/api/auth/signin',formData)
+
+           console.log(res);
+            console.log(res.data);
+           
+            if (res.data.success === false) {
+              dispatch(signInFailure(res.data.message));
             }
 
-        } catch (error) {
-            dispatch(signInFailure(error.response?.data?.message || error.message));
-        }
-    };
-
+      
+            if (res.data.username) {
+              dispatch(signInSuccess(res.data));
+              navigate('/');
+            }
+          } catch (error) {
+            dispatch(signInFailure(error.message));
+          }
+        };
     return (
         <div className="min-h-full justify-center">
             <div className="lg:w-1/4 md:w-1/2 w-2/3 m-auto mt-18">
@@ -53,12 +57,12 @@ const Signin = () => {
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-2 mt-2">
-                            <Label>Email</Label>
+                            <Label htmlFor="email">Email</Label>
                             <TextInput type="email" id="email" placeholder='xxxxxxxx@gmail.com' onChange={handleChange} />
                         </div>
 
                         <div className="mb-2 mt-2">
-                            <Label>Password</Label>
+                            <Label htmlFor="password">Password</Label>
                             <TextInput type="password" id="password" placeholder='**********' onChange={handleChange} />
                         </div>
 
@@ -78,7 +82,7 @@ const Signin = () => {
                                 className='w-full h-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white self-center' 
                                 outline
                             >
-                                <FaGoogle className='mr-2 mt-0.5 size-4' />
+                                <FaGoogle className='mr-2 mt-0.5' size={20} />
                                 Continue with Google
                             </Button>
                         </div>
