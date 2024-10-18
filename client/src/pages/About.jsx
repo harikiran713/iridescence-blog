@@ -1,9 +1,9 @@
-
+import AddMember from "./AddMember";
 
 const About = () => {
     return (
         <div>
-            about
+            <AddMember/>
         </div>
     );
 };

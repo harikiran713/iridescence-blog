@@ -55,5 +55,40 @@ const signin = async (req, res, next) => {
         next(error);
     }
 };
+// export const google =async (req,res,next)=>
+// {
+// const {email,name,googlePhotoUrl}=req.body;
+// function generatePassword(length = 12) {
+//     const chars = 
+//       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';
+    
+//     let password = '';
+    
+//     for (let i = 0; i < length; i++) {
+//       const randomIndex = Math.floor(Math.random() * chars.length);
+//       password += chars[randomIndex];
+//     }
+    
+//     return password;
+//   }
+ 
+  
+// try {
+//     const user =await User.findOne({email});
+//     if(user)
+//     {
+//         const token = jwt.token({id:user._id},process.env.JWT_SECRET);
+//         const {password,...rest} =user._doc;
+//         res.status(200).cookie('access_token',token,{
+//             httpOnly:true,
+//         })
+//     }
+//     const password=generatePassword();
+
+// } catch (error) {
+//     next(error);
+    
+// }
+// }
 
 module.exports = { signup, signin };

@@ -1,10 +1,10 @@
 
 
+
+
 const Project = () => {
     return (
-        <div>
-            projects
-        </div>
+       <div></div>
     );
 };
 

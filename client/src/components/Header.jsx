@@ -41,6 +41,8 @@ export default function componentName() {
     <Navbar.Link active={path==="/"} as={'div'}><Link to='/'>Home</Link></Navbar.Link>  
     <Navbar.Link  active={path==="/about"} as={'div'}> <Link to='about'>About</Link></Navbar.Link>  
     <Navbar.Link active={path==="/members"} as={'div'}  >  <Link to='/members'>Members</Link></Navbar.Link>
+    <Navbar.Link active={path==="/events"} as={'div'}  >  <Link to='/events'>Events</Link></Navbar.Link>
+    <Navbar.Link active={path==="/addevent"} as={'div'}  >  <Link to='/addevent'>addevent</Link></Navbar.Link>
     </Navbar.Collapse>
 
       </Navbar>

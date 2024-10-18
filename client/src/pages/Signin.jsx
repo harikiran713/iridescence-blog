@@ -6,6 +6,7 @@ import { useState } from 'react';
 import iridescence from '../images/iridescence.png'; 
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
+import GoogleAuth from '../components/GoogleAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
@@ -75,16 +76,12 @@ const Signin = () => {
                                     </>
                                 ) : 'Sign In'}
                             </Button>
+                            
+                           
                         </div>
-
+                        <GoogleAuth/>
                         <div className="mb-2 mt-2 flex items-center self-center flex-row">
-                            <Button
-                                className='w-full h-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white self-center' 
-                                outline
-                            >
-                                <FaGoogle className='mr-2 mt-0.5' size={20} />
-                                Continue with Google
-                            </Button>
+                         
                         </div>
                     </form>
 

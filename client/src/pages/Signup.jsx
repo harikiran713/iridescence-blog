@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useState } from 'react';
 import axios from 'axios';
+import GoogleAuth from '../components/GoogleAuth';
 import iridescence from '../images/iridescence.png'; 
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 
@@ -74,15 +75,10 @@ console.log(data);
                                 ) : 'Sign Up'}
                             </Button>
                         </div>
+                        <GoogleAuth/>
 
                         <div className="mb-2 mt-2 flex items-center self-center flex-row">
-                            <Button
-                                className='w-full h-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white self-center'
-                                outline
-                            >
-                                <FaGoogle className='mr-2 mt-0.5 size-4' />
-                                Continue with Google
-                            </Button>
+                        
                         </div>
                     </form>
 

@@ -1,16 +1,16 @@
-// index.js
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/user.route'); // Ensure the path is correct
-const authRoutes = require('./routes/auth.route'); // Ensure the path is correct
+const userRoutes = require('./routes/user.route'); 
+const authRoutes=require("./routes/auth.route.js")
+const addMemberRouter = require('./routes/addmember.route.js');
 require('dotenv').config();
 
 const app = express();
-app.use(express.json()); // Middleware to parse JSON requests
+app.use(express.json()); 
 
 async function connect() {
     try {
-        await mongoose.connect(process.env.MONGO); // MongoDB connection string
+        await mongoose.connect(process.env.MONGO); 
         console.log('MongoDB is connected');
     } catch (error) {
         console.error('MongoDB connection error:', error);
@@ -21,9 +21,10 @@ connect();
 
 // Use routes
 app.use('/api/user', userRoutes);
-app.use('/api/auth', authRoutes); // Uncomment to enable authentication routes
+app.use('/api/auth', authRoutes); 
+app.use('/api/members', addMemberRouter);
 
-// Error handling middleware
+
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal server error';
