@@ -14,13 +14,13 @@ export default function GoogleAuth() {
 
 
   const GoogleSign = async() => {
-    //this custom provider asks you every time to select a account
+  
     provider.setCustomParameters({prompt:'select_account'});
     try
     {
       const GoogleRes= await signInWithPopup(auth, provider);
-     // console.log(GoogleRes);
-
+      console.log(GoogleRes);
+     
       const res =await axios.post("/api/auth/google",{name:GoogleRes.user.displayName,email:GoogleRes.user.email,googlePhotoUrl:GoogleRes.user.photoURL});
       const data =await res.json();
       if(res.ok)

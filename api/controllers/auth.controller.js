@@ -55,40 +55,65 @@ const signin = async (req, res, next) => {
         next(error);
     }
 };
-// export const google =async (req,res,next)=>
-// {
-// const {email,name,googlePhotoUrl}=req.body;
-// function generatePassword(length = 12) {
-//     const chars = 
-//       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';
-    
-//     let password = '';
-    
-//     for (let i = 0; i < length; i++) {
-//       const randomIndex = Math.floor(Math.random() * chars.length);
-//       password += chars[randomIndex];
-//     }
-    
-//     return password;
-//   }
+const google =async (req,res,next)=>
+{
+const {email,name,googlePhotoUrl}=req.body;
+
  
   
-// try {
-//     const user =await User.findOne({email});
-//     if(user)
-//     {
-//         const token = jwt.token({id:user._id},process.env.JWT_SECRET);
-//         const {password,...rest} =user._doc;
-//         res.status(200).cookie('access_token',token,{
-//             httpOnly:true,
-//         })
-//     }
-//     const password=generatePassword();
+try {
+    const user =await User.findOne({email});
+    if(user)
+    {
+        const token = jwt.token({id:user._id},process.env.JWT_SECRET);
+        const {password,...rest} =user._doc;
+        res.status(200).cookie('access_token',token,{
+            httpOnly:true,
+        })
+    }
+    //this if the user does not exits create the user for the email  
+   else{
+    const generatePassword=(length=12)=>
+        {
+             const set = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+             let password="";
+             for(let i =0;i<length;i++)
+             {
+               const index= Math.floor(Math.random()*set.length);
+               password=password+set[index];
+             }
+             return password;
+        }
+        const randompassword =generatePassword();
+        const hashedPassword=bcryptjs.hashSync(randompassword,10);
+        const user1=new User(
+            {
+                username:name,
+                email,
+                password:hashedPassword,
+                googlePhotoUrl
+        
+            }
+          
+        )
+        await user1.save();
 
-// } catch (error) {
-//     next(error);
+        try {
+            const user =await User.findOne({email});
+            const token=jwt.token({id:user._id},process.env.JWT_SECRET);
+            res.status(200).cookie('access_token',token,{
+                httpOnly:true
+            })
+        } catch (error) {
+            next(error);
+            
+        }
+   }
+
+} catch (error) {
+    next(error);
     
-// }
-// }
+}
+}
 
-module.exports = { signup, signin };
+module.exports = { signup, signin,google };

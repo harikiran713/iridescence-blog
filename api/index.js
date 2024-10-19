@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user.route'); 
 const authRoutes=require("./routes/auth.route.js")
 const addMemberRouter = require('./routes/addmember.route.js');
+const eventRouter=require("./routes/addevent.route.js");
 require('dotenv').config();
 
 const app = express();
@@ -23,6 +24,8 @@ connect();
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes); 
 app.use('/api/members', addMemberRouter);
+app.use('/api/event', eventRouter);
+
 
 
 app.use((err, req, res, next) => {
