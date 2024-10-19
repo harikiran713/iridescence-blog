@@ -1,40 +1,40 @@
 import { FaGoogle } from "react-icons/fa";
 import { Button } from "flowbite-react";
-import {app} from "../firebase.js";
+import { app } from "../firebase.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { signInSuccess } from "../redux/user/userSlice.js";
+import { useDispatch } from 'react-redux'; 
 
 const auth = getAuth(app);
 
 export default function GoogleAuth() {
   const provider = new GoogleAuthProvider();
-  const navigate =useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch(); 
 
-
-  const GoogleSign = async() => {
-  
-    provider.setCustomParameters({prompt:'select_account'});
-    try
-    {
-      const GoogleRes= await signInWithPopup(auth, provider);
+  const GoogleSign = async () => {
+    provider.setCustomParameters({ prompt: 'select_account' });
+    try {
+      const GoogleRes = await signInWithPopup(auth, provider);
       console.log(GoogleRes);
-     
-      const res =await axios.post("/api/auth/google",{name:GoogleRes.user.displayName,email:GoogleRes.user.email,googlePhotoUrl:GoogleRes.user.photoURL});
-      const data =await res.json();
-      if(res.ok)
-      {
-        dispatchEvent(signInSuccess(data));
-        navigate('/')
+
+      const res = await axios.post("/api/auth/google", {
+        name: GoogleRes.user.displayName,
+        email: GoogleRes.user.email,
+        googlePhotoUrl: GoogleRes.user.photoURL
+      });
+      console.log(res.data);
+      const data = res.data;
+
+      if (res.status === 200) {
+        dispatch(signInSuccess(data)); 
+        navigate('/');
       }
-    } 
-    catch(error)
-    {
-console.log(error);
+    } catch (error) {
+      console.log(error);
     }
-   
-      
   };
 
   return (
