@@ -11,20 +11,24 @@ import {BrowserRouter as Router ,Routes,Route}   from "react-router-dom"
 import Footercm from './components/Footer'
 import Slider from './components/Slider'
 import Events from './pages/Events'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   
 
   return (
     <Router>
-      <Header/>
+      <Header />
       
       <Routes>
         <Route path="/" element={< Home/>}/>
         <Route path="/about" element={< About/>}/>
         <Route path="/sign-in" element={< Signin/>}/>
         <Route path="/sign-up" element={< Signup/>}/>  
+        <Route element={<PrivateRoute/>}>
         <Route path="/dashboard" element={< Dashboard/>}/>
+        </Route>
+       
         <Route path="/members" element={< Members/>}/>
         <Route path="/events" element={< Events/>}/>
         <Route path="/addevent" element={< AddEvents/>}/>

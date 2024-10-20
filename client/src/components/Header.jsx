@@ -9,17 +9,20 @@ export default function ComponentName() {
   const path = useLocation().pathname;
 
   const { currentUser } = useSelector((state) => state.user);
-
+  // console.log(currentUser,"this is what i need to send");
   let xname = "";
-  const initialName = currentUser.username; 
+if(currentUser){
+
+  const initialName = currentUser.username 
   console.log(initialName);
   let length = initialName.length;
 
   for (let i = 0; i < length; i++) {
     if (initialName[i] !== '#') {
-      xname += initialName[i]; 
+      xname += initialName[i];
     }
-  }
+  }}
+  console.log(currentUser.googlePhotoUrl)
 
   const instalink = () => {
     window.open("https://www.instagram.com/iridescence.iiitdwd?igshid=bzRqdDBpamt5ZG84", '_blank', 'noopener,noreferrer');
@@ -48,28 +51,19 @@ export default function ComponentName() {
         </Button>
 
         {currentUser ? (
-          <Dropdown arrowIcon={false} inline  label={<Avatar alt="user"  img={currentUser.googlePhotoUrl} rounded />}>
+          <Dropdown arrowIcon={false} inline label={<Avatar alt="user" img={currentUser.googlePhotoUrl} rounded />}>
             {/* Add Dropdown Items Here */}
             <Dropdown.Header className="w-[120px] flex justify-center">
-              <span className="font-bold  text-[15px] hover:scale-105"> #{xname.toUpperCase()}</span>
-              
-           
+              <span className="font-bold text-[15px] hover:scale-105"> #{xname.toUpperCase()}</span>
             </Dropdown.Header>
-            {/* <Dropdown.Header className="w-[120px] flex justify-center">
-             
-              
-              <span className="font-bold  text-[15px] hover:scale-105"> {currentUser.email}</span>
-            </Dropdown.Header> */}
             <Link to={'/dashboard?tab=profile'}>
-            <Dropdown.Item>
-              Profile
-            </Dropdown.Item>
+              <Dropdown.Item>
+                Profile
+              </Dropdown.Item>
             </Link>
             <Dropdown.Item>
               Sign Out
             </Dropdown.Item>
-
-            
           </Dropdown>
         ) : (
           <Link to="/sign-in">
