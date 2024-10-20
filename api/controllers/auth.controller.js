@@ -83,7 +83,7 @@ const google = async (req, res, next) => {
             const timestamp = Date.now();
             const time = timestamp.toString();
             const user1 = new User({
-                username: name + time,
+                username: name+"#"+time,
                 email,
                 password: hashedPassword,
                 googlePhotoUrl,
