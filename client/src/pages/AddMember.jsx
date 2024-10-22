@@ -58,14 +58,14 @@ const AddMember = () => {
   };
 
   return (
-    <div>
-      <div className='flex justify-center'>
+    <div className=''>
+      <div className='flex justify-center  mt-[200px]'>
         <img src={iridescence} alt="Iridescence Logo" className='w-48' style={{ width: '250px', height: '220px' }} />
       </div>
-      <div className='flex w-full justify-center mt-12'>
-        <form onSubmit={handleSubmit} className='w-1/5'>
+    <div className='flex w-full justify-center   mt-12'>
+        <form onSubmit={handleSubmit} className=' lg:w-1/3 md:w-4/5 sm:w-1/2'>
           <Label>Name</Label>
-          <TextInput placeholder='Enter the name' className='mb-3' name="name" onChange={handle} />
+          <TextInput placeholder='Enter the name' className='mb-3 ' name="name" onChange={handle} />
           
           <Label>Year</Label>
           <Select required className='mb-3' name="year" onChange={handle}>

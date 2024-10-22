@@ -4,12 +4,19 @@ import { useLocation } from "react-router-dom";
 import { PiStackPlus } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { ImUserPlus } from "react-icons/im";
+import { useEffect, useState } from "react";
 
 const DashSidebar = () => {
     const location=useLocation();
+// const [tab,setTab]=useState('');
+// useEffect(()=>
+// {
+//     const urlParams=
+// })
+
 
     return (
-        <Sidebar>
+        <Sidebar className="w-full md:w-52">
             <Sidebar.Items>
                 <Sidebar.ItemGroup>
                     <Sidebar.Item active icon={HiUser} label={'User'} labelColor='dark'>

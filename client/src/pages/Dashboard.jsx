@@ -20,11 +20,12 @@ const Dashboard = () => {
 
     },[location.search])
     return (
-        <div className="">
-           <div >
+        <div className="min-h-screen flex flex-col md:flex-row ">
+           <div  className="md:w-52">
           <DashSiderbar/>
            </div>
-          <div className="-mt-44">{tab==='profile' && <DashProfile />}
+          <div className="-mt-44 w-full ">
+            {tab==='profile' && <DashProfile />}
            {tab==='addevent' && <AddEvents/>}
            {tab==='addmember' && <AddMember/>}</div></div>
             

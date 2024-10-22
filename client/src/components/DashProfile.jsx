@@ -2,6 +2,8 @@
 
 export default function DashProfile() {
   return (
-    <div>kjhg</div>
+    <div>
+      <h1>profile</h1>
+    </div>
   );
 }

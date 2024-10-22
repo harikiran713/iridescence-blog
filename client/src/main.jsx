@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
  
     <Provider store={store}>
       <PersistGate  persistor={persistor}>
-        <App />
+        <App/>
       </PersistGate>
     </Provider>
   
