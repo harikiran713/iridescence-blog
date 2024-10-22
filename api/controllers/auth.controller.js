@@ -1,7 +1,7 @@
-// auth.controller.js
+
 const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
-const errorHandler = require('../utils/error'); // Ensure the path is correct
+const errorHandler = require('../utils/error'); 
 const jwt = require('jsonwebtoken');
 
 const signup = async (req, res, next) => {
@@ -79,7 +79,7 @@ const google = async (req, res, next) => {
             };
 
             const randomPassword = generatePassword();
-            const hashedPassword = bcryptjs.hashSync(randomPassword, 10);
+            const hashedPassword = bcrypt.hashSync(randomPassword, 10);
             const timestamp = Date.now();
             const time = timestamp.toString();
             const user1 = new User({
@@ -88,6 +88,7 @@ const google = async (req, res, next) => {
                 password: hashedPassword,
                 googlePhotoUrl,
             });
+            console.log(user1.username);
 
             await user1.save();
             const { password, ...remaining } = user1._doc; 

@@ -12,6 +12,7 @@ import Footercm from './components/Footer'
 import Slider from './components/Slider'
 import Events from './pages/Events'
 import PrivateRoute from './components/PrivateRoute'
+import AddMember from './pages/AddMember'
 
 function App() {
   
@@ -31,7 +32,9 @@ function App() {
        
         <Route path="/members" element={< Members/>}/>
         <Route path="/events" element={< Events/>}/>
-        <Route path="/addevent" element={< AddEvents/>}/>
+       
+      
+     
 
         <Route path="/projects" element={< Project/>}/>
 

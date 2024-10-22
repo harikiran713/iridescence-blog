@@ -18,11 +18,15 @@ if(currentUser){
   let length = initialName.length;
 
   for (let i = 0; i < length; i++) {
-    if (initialName[i] !== '#') {
-      xname += initialName[i];
+    if (initialName[i] == '#') {
+      
+      break
     }
+    xname += initialName[i];
   }}
-  console.log(currentUser.googlePhotoUrl)
+  console.log(currentUser)
+  console.log("hari");
+  // console.log(currentUser. googlePhotoUrl)
 
   const instalink = () => {
     window.open("https://www.instagram.com/iridescence.iiitdwd?igshid=bzRqdDBpamt5ZG84", '_blank', 'noopener,noreferrer');
